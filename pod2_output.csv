@@ -1,0 +1,7 @@
+event_id,event_date,pod_id,pod_name,population,vulnerable_count,vulnerable_pct,resource_type,need_status,request_submitted,amount_requested,estimated_true_need,distance_from_hub_km,delivery_difficulty,days_since_last_successful_delivery,prior_unfulfilled_requests,pool_available_that_resource,naive_priority_score,naive_priority_rank,fair_priority_score,fair_priority_rank,amount_allocated,unmet_amount
+1,5/07/2026,Pod 2,Orca Pod 2,90,14,0.156,water,warning,True,8694,8694,5.8,medium,5,0,6500.5,-5.8,1,23.82,2,1187.5,7506.5
+4,10/07/2026,Pod 2,Orca Pod 2,90,14,0.156,water,critical,True,9828,9828,5.8,medium,10,1,6143.8,-5.8,2,36.82,2,137.8,9690.2
+7,15/07/2026,Pod 2,Orca Pod 2,90,14,0.156,water,failed,True,10962,10962,5.8,medium,15,2,6524.1,-5.8,2,49.82,2,0.0,10962.0
+10,20/07/2026,Pod 2,Orca Pod 2,90,14,0.156,water,failed,True,10962,10962,5.8,medium,20,3,6251.8,-5.8,2,52.82,2,0.0,10962.0
+13,25/07/2026,Pod 2,Orca Pod 2,90,14,0.156,water,failed,True,10962,10962,5.8,medium,25,4,6542.2,-5.8,2,55.82,2,0.0,10962.0
+16,30/07/2026,Pod 2,Orca Pod 2,90,14,0.156,water,failed,True,10962,10962,5.8,medium,30,5,6778.1,-5.8,2,58.82,2,79.1,10882.9
