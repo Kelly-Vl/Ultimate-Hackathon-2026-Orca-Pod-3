@@ -31,6 +31,7 @@
 
 .enter-btn {
     align-self: flex-start;
+    margin-top: 4px;
     background: var(--green);
     color: #06231c;
     border: none;
@@ -39,10 +40,15 @@
     font-weight: 700;
     font-size: 14px;
     cursor: pointer;
+    transition: opacity .15s ease, transform .15s ease;
 }
 
 .enter-btn:hover {
     opacity: 0.9;
+}
+
+.enter-btn:active {
+    transform: scale(0.98);
 }
 
 .error-msg {
@@ -51,7 +57,7 @@
 }
 
 .carving-card {
-    margin-top: 20px;
+    margin-top: 24px;
 }
 
 .carving-note {
