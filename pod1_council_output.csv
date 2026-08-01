@@ -1,0 +1,6 @@
+event_id,event_date,pod_id,pod_name,population,vulnerable_count,vulnerable_pct,resource_type,need_status,request_submitted,amount_requested,estimated_true_need,distance_from_hub_km,delivery_difficulty,days_since_last_successful_delivery,prior_unfulfilled_requests,pool_available_that_resource,naive_priority_score,naive_priority_rank,fair_priority_score,fair_priority_rank,amount_allocated,unmet_amount
+3,2026-07-10,Pod 1,Orca Pod 1,120,18,0.15,food,warning,True,966.0,966.0,3.2,low,10,0,854.5,-3.2,1,24.04,3,854.5,111.5
+6,2026-07-15,Pod 1,Orca Pod 1,120,18,0.15,food,failed,True,1218.0,1218.0,3.2,low,15,1,1034.0,-3.2,1,47.04,3,1034.0,184.0
+9,2026-07-20,Pod 1,Orca Pod 1,120,18,0.15,food,failed,True,1218.0,1218.0,3.2,low,20,2,949.0,-3.2,1,50.04,3,949.0,269.0
+12,2026-07-25,Pod 1,Orca Pod 1,120,18,0.15,food,failed,True,1218.0,1218.0,3.2,low,25,3,807.0,-3.2,1,53.04,3,807.0,411.0
+15,2026-07-30,Pod 1,Orca Pod 1,120,18,0.15,food,failed,True,1218.0,1218.0,3.2,low,30,4,765.6,-3.2,1,56.04,3,765.6,452.4
