@@ -186,6 +186,11 @@ header {
     color:var(--red);
 }
 
+.failed {
+    background:rgba(232,121,97,.28);
+    color:var(--red);
+}
+
 .progress {
     margin-top:15px;
 
@@ -252,4 +257,70 @@ footer {
 
 .chart-card canvas {
     margin-top:25px;
+}
+
+.chart-card-header {
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    flex-wrap:wrap;
+    gap:12px;
+}
+
+.resource-toggle {
+    display:flex;
+    gap:8px;
+}
+
+.resource-btn {
+    background:var(--panel-light);
+    border:1px solid rgba(255,255,255,.08);
+    color:var(--muted);
+    padding:6px 14px;
+    border-radius:20px;
+    font-size:13px;
+    cursor:pointer;
+}
+
+.resource-btn:hover {
+    color:var(--text);
+}
+
+.resource-btn.active {
+    background:rgba(84,210,176,.15);
+    color:var(--green);
+    border-color:transparent;
+}
+
+.empty-row td {
+    color:var(--muted);
+    text-align:center;
+    padding:30px;
+}
+
+td.mono, th.mono {
+    white-space:nowrap;
+}
+
+/* ROW-LEVEL URGENCY HIGHLIGHTING (failed / critical pods) */
+
+tr.row-critical {
+    background: rgba(232,121,97,.12);
+    box-shadow: inset 3px 0 0 var(--red);
+}
+
+tr.row-failed {
+    background: rgba(232,121,97,.22);
+    box-shadow: inset 3px 0 0 var(--red);
+}
+
+tr.row-critical:hover,
+tr.row-failed:hover {
+    background: rgba(232,121,97,.3);
+}
+
+tr.row-critical td,
+tr.row-failed td {
+    color: var(--red);
+    font-weight: 600;
 }
