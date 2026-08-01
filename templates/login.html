@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}"/>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/login.css') }}"/>
+    <title>Tideline | Passphrase Required</title>
+</head>
+<body>
+    <div class="container login-container">
+        <header>
+            <div>
+                <div class="logo">🌊 Tideline</div>
+                <div class="subtitle">Matilda Bay Recovery Access</div>
+            </div>
+            <div class="status">● Access Locked</div>
+        </header>
+
+        <section class="hero">
+            <h1>This dock answers to <span>one word</span>.<br>No names. No accounts.</h1>
+            <p>
+                Say the phrase spoken at the gatherings and the water lets you through.
+                Anything else, and it doesn't.
+            </p>
+        </section>
+
+        <section class="section">
+            <div class="card login-card">
+                <form method="POST" action="{{ url_for('login') }}" autocomplete="off">
+                    <label for="passphrase" class="small">Passphrase</label>
+                    <input
+                        type="password"
+                        id="passphrase"
+                        name="passphrase"
+                        class="passphrase-input"
+                        placeholder="Enter the phrase"
+                        autofocus
+                        required
+                    >
+                    <button type="submit" class="enter-btn">Enter</button>
+                    {% if error %}
+                    <p class="error-msg">{{ error }}</p>
+                    {% endif %}
+                </form>
+            </div>
+
+            <div class="card carving-card">
+                <h2>Weathered Carving</h2>
+                <p class="small carving-note">
+                    Scratched into the old boatshed post, half-worn since before the feathers came.
+                    Someone left it for whoever finds this dock first.
+                </p>
+                <div class="carving-text">
+                    "Four hold the bay standing.<br>
+                    Six times the circle spoke.<br>
+                    Count the gatherings, not the pods.<br>
+                    The water remembers what the circle counted."
+                </div>
+            </div>
+        </section>
+
+        <footer>Tideline Recovery System | Matilda Bay Zone</footer>
+    </div>
+</body>
+</html>

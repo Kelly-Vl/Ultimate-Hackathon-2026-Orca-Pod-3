@@ -1,0 +1,68 @@
+.login-container {
+    max-width: 720px;
+}
+
+.login-card {
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+}
+
+.login-card label {
+    display: block;
+    margin-bottom: 6px;
+}
+
+.passphrase-input {
+    width: 100%;
+    padding: 14px 16px;
+    border-radius: 12px;
+    border: 1px solid rgba(255,255,255,.12);
+    background: var(--panel-light);
+    color: var(--text);
+    font-size: 16px;
+    letter-spacing: 2px;
+}
+
+.passphrase-input:focus {
+    outline: none;
+    border-color: var(--green);
+}
+
+.enter-btn {
+    align-self: flex-start;
+    background: var(--green);
+    color: #06231c;
+    border: none;
+    padding: 12px 26px;
+    border-radius: 30px;
+    font-weight: 700;
+    font-size: 14px;
+    cursor: pointer;
+}
+
+.enter-btn:hover {
+    opacity: 0.9;
+}
+
+.error-msg {
+    color: var(--red);
+    font-size: 14px;
+}
+
+.carving-card {
+    margin-top: 20px;
+}
+
+.carving-note {
+    margin-bottom: 15px;
+}
+
+.carving-text {
+    font-family: Georgia, "Times New Roman", serif;
+    font-style: italic;
+    color: var(--muted);
+    line-height: 1.8;
+    border-left: 3px solid rgba(255,255,255,.15);
+    padding-left: 18px;
+}
