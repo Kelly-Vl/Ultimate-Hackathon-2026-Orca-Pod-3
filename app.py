@@ -1,4 +1,4 @@
-from flask import Flask, render_template, jsonify
+from flask import Flask, render_template, jsonify, request
 import pandas as pd
 import os
 
@@ -8,7 +8,7 @@ app = Flask(__name__)
 POD_SUPPLY_CSV = "data/matilda_bay_pod_supply_data.csv"
 COUNCIL_ALLOCATIONS_CSV = "data/matilda_bay_council_meetings_data.csv"
 
-## load csv data
+## load csv data (JSON-safe: NaN -> None, for the /api endpoints the frontend fetches)
 def load_pod_supply_data():
     df = pd.read_csv(POD_SUPPLY_CSV)
     # Replace NaN (from blank CSV cells) with None so jsonify emits valid `null`
@@ -19,6 +19,16 @@ def load_pod_supply_data():
 def load_council_allocations():
     df = pd.read_csv(COUNCIL_ALLOCATIONS_CSV)
     return df.astype(object).where(pd.notnull(df), None)
+
+
+## raw numeric loaders (real NaN, not None) -- used internally by the AI features below,
+## which need working pandas math (.mean(), .dropna(), z-scores). Never returned directly via jsonify.
+def load_pod_supply_data_raw():
+    return pd.read_csv(POD_SUPPLY_CSV)
+
+
+def load_council_allocations_raw():
+    return pd.read_csv(COUNCIL_ALLOCATIONS_CSV)
 
 
 ## main page
