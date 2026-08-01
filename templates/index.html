@@ -48,21 +48,45 @@
         <section class="section">
             <div class="card">
                 <h2>
-                Council Allocation History
+                Pods in Failed Status
                 </h2>
             <table>
                 <thead>
                     <tr>
-                        <th>Date</th>
                         <th>Pod</th>
-                        <th>Resource</th>
-                        <th>Requested</th>
-                        <th>Allocated</th>
+                        <th>Last Report</th>
+                        <th>Population</th>
+                        <th>Water Runway</th>
+                        <th>Food Runway</th>
+                        <th>Medicine Runway</th>
+                        <th>Requesting Aid</th>
                     </tr>
                 </thead>
-                <tbody id="allocationTable">
+                <tbody id="failedPodsTable">
+                    <tr class="empty-row"><td colspan="7">Loading&hellip;</td></tr>
                 </tbody>
             </table>
+            </div>
+        </section>
+
+        <section class="section">
+            <div class="card chart-card" style="min-height:460px;">
+                <div class="chart-card-header">
+                    <h2>
+                        Pod Resource Inventory &mdash; Full History
+                    </h2>
+                    <div class="resource-toggle" id="resourceToggle">
+                        <button class="resource-btn active" data-resource="water_stock_l" data-label="Water" data-unit="L">Water</button>
+                        <button class="resource-btn" data-resource="food_stock_kg" data-label="Food" data-unit="kg">Food</button>
+                        <button class="resource-btn" data-resource="medicine_stock_units" data-label="Medicine" data-unit=" units">Medicine</button>
+                    </div>
+                </div>
+
+                <p class="small" style="margin-top:10px;">Daily stock levels for every pod across the entire reporting period, with a dashed linear trendline per pod.</p>
+
+                <div style="position: relative; height: 380px;">
+                    <canvas id="resourceChart"></canvas>
+                </div>
             </div>
         </section>
 
@@ -70,38 +94,26 @@
             <div class="grid">
                 <div class="card chart-card">
                     <h2>
-                        Pod Resource Inventory
-                    </h2>
-                    
-                    <div style="position: relative; height: 320px;">
-                        <canvas id="resourceChart"></canvas>
-                    </div>
-                    
-                </div>
-
-                <div class="card chart-card">
-                    <h2>
-                        Bay Resource Distribution
+                        Pod Resource Summary Overview
                     </h2>
                     <div style="position: relative; height: 320px;">
                         <canvas id="distributionChart"></canvas>
                     </div>
                     
                 </div>
-            </div>
-        </section>
 
-        <section class="section">
-            <div class="card chart-card">
-                <h2>
-                Pod Resource Health Profile
-                </h2>
-                <div style="position: relative; height: 320px;">
-                    <canvas id="healthChart"></canvas>
+                <div class="card chart-card">
+                    <h2>
+                    Pod Resource Health Profile
+                    </h2>
+                    <p class="small" style="margin-top:-10px; margin-bottom:15px;">Relative health score per pod, combining water, food and medicine stock levels.</p>
+                    <div style="position: relative; height: 320px;">
+                        <canvas id="healthChart"></canvas>
+                    </div>
                 </div>
             </div>
         </section>
-        
+
         <footer>
         Tideline Recovery System |
         Matilda Bay Zone
