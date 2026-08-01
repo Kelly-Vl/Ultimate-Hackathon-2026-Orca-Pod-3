@@ -108,6 +108,28 @@
         </footer>
         </div>
 
+        <!-- Chatbot Widget (mock / canned responses only) -->
+        <button id="chatbotToggle" class="chatbot-toggle" aria-label="Open assistant">
+            💬
+        </button>
+
+        <div id="chatbotWindow" class="chatbot-window hidden">
+            <div class="chatbot-header">
+                <div>
+                    <div class="chatbot-title">🌊 Tide</div>
+                    <div class="chatbot-subtitle">Recovery Assistant (demo)</div>
+                </div>
+                <button id="chatbotClose" class="chatbot-close" aria-label="Close assistant">✕</button>
+            </div>
+
+            <div id="chatbotMessages" class="chatbot-messages"></div>
+
+            <form id="chatbotForm" class="chatbot-input-row">
+                <input id="chatbotInput" type="text" placeholder="Ask about a pod..." autocomplete="off" />
+                <button type="submit">Send</button>
+            </form>
+        </div>
+
         <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
         
         <script src="{{ url_for('static', filename='js/script.js') }}"></script>

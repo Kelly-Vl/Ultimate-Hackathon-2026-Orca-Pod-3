@@ -529,3 +529,100 @@ color:"#E8F1F2"
     loadCouncil();
 
     loadPodCharts();
+
+
+/* ================= CHATBOT WIDGET (mock / canned responses only) ================= */
+
+const chatbotToggle = document.getElementById("chatbotToggle");
+const chatbotWindow = document.getElementById("chatbotWindow");
+const chatbotClose = document.getElementById("chatbotClose");
+const chatbotForm = document.getElementById("chatbotForm");
+const chatbotInput = document.getElementById("chatbotInput");
+const chatbotMessages = document.getElementById("chatbotMessages");
+
+// Pre-written replies matched by keyword. First match in the list wins.
+const CANNED_KEYWORD_RESPONSES = [
+    { keywords: ["water"], reply: "Water levels are lowest in Pod 2 right now — it dropped into critical range this week." },
+    { keywords: ["food"], reply: "Food stock is tightest in Pod 1. Council allocations have been trailing the requested amount there." },
+    { keywords: ["medicine"], reply: "Medicine units are holding steady across most pods, but I'd keep an eye on Pod 4." },
+    { keywords: ["pod 4", "pod4"], reply: "Pod 4 has been sitting at failed status for a while without a new assistance request — worth checking on them directly." },
+    { keywords: ["hello", "hi", "hey"], reply: "Hey there 👋 I'm Tide, the recovery assistant. Ask me about water, food, medicine, or a specific pod." },
+    { keywords: ["help"], reply: "I can answer quick questions about pod resource status — try asking about water, food, medicine, or a pod by name." },
+    { keywords: ["thank"], reply: "Happy to help! Let me know if there's anything else you'd like to check." }
+];
+
+// Fallback replies cycle in order (not randomly) when nothing matches,
+// so the demo still feels pre-scripted rather than chaotic.
+const CANNED_FALLBACK_RESPONSES = [
+    "I'm just a demo assistant right now, so I don't have a live answer for that yet — but it's on the roadmap!",
+    "Good question. This is a placeholder response since I'm not wired up to a real model yet.",
+    "Noted! Once real AI insights are hooked up, I'll be able to dig into the pod data for you.",
+    "Still just a mock-up for now! Try asking about water, food, medicine, or a specific pod."
+];
+
+let fallbackIndex = 0;
+
+function pickCannedResponse(userText) {
+    const lower = userText.toLowerCase();
+
+    const match = CANNED_KEYWORD_RESPONSES.find(entry =>
+        entry.keywords.some(keyword => lower.includes(keyword))
+    );
+
+    if (match) {
+        return match.reply;
+    }
+
+    const reply = CANNED_FALLBACK_RESPONSES[fallbackIndex % CANNED_FALLBACK_RESPONSES.length];
+    fallbackIndex++;
+
+    return reply;
+}
+
+function addChatBubble(text, sender) {
+    const bubble = document.createElement("div");
+    bubble.className = `chat-bubble ${sender}`;
+    bubble.textContent = text;
+
+    chatbotMessages.appendChild(bubble);
+    chatbotMessages.scrollTop = chatbotMessages.scrollHeight;
+
+    return bubble;
+}
+
+function openChatbot() {
+    chatbotWindow.classList.remove("hidden");
+
+    if (chatbotMessages.children.length === 0) {
+        addChatBubble("Hi! I'm Tide, your recovery assistant. Ask me about water, food, medicine, or a pod.", "bot");
+    }
+
+    chatbotInput.focus();
+}
+
+function closeChatbot() {
+    chatbotWindow.classList.add("hidden");
+}
+
+chatbotToggle.addEventListener("click", () => {
+    chatbotWindow.classList.contains("hidden") ? openChatbot() : closeChatbot();
+});
+
+chatbotClose.addEventListener("click", closeChatbot);
+
+chatbotForm.addEventListener("submit", (e) => {
+    e.preventDefault();
+
+    const text = chatbotInput.value.trim();
+    if (!text) return;
+
+    addChatBubble(text, "user");
+    chatbotInput.value = "";
+
+    const typingBubble = addChatBubble("Tide is typing...", "bot typing");
+
+    setTimeout(() => {
+        typingBubble.remove();
+        addChatBubble(pickCannedResponse(text), "bot");
+    }, 700 + Math.random() * 500);
+});
