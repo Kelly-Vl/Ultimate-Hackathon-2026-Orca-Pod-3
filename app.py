@@ -58,6 +58,11 @@ def latest_pod_status():
         latest.to_dict(orient="records")
     )
 
+## history
+@app.route("/api/pods/history")
+def history():
+    return render_template("history.html")
+
 ## run server
 if __name__ == "__main__":
     app.run(
