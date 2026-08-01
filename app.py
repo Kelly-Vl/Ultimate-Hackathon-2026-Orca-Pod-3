@@ -10,11 +10,15 @@ COUNCIL_ALLOCATIONS_CSV = "data/matilda_bay_council_meetings_data.csv"
 
 ## load csv data
 def load_pod_supply_data():
-    return pd.read_csv(POD_SUPPLY_CSV)
+    df = pd.read_csv(POD_SUPPLY_CSV)
+    # Replace NaN (from blank CSV cells) with None so jsonify emits valid `null`
+    # instead of the invalid JSON literal `NaN`, which crashes JSON.parse() in the browser
+    return df.astype(object).where(pd.notnull(df), None)
 
 
 def load_council_allocations():
-    return pd.read_csv(COUNCIL_ALLOCATIONS_CSV)
+    df = pd.read_csv(COUNCIL_ALLOCATIONS_CSV)
+    return df.astype(object).where(pd.notnull(df), None)
 
 
 ## main page

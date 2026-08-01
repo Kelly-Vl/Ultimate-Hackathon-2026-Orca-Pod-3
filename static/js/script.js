@@ -244,6 +244,7 @@ options:{
 
 
 responsive:true,
+maintainAspectRatio:false,
 
 
 plugins:{
@@ -371,6 +372,7 @@ options:{
 
 
 responsive:true,
+maintainAspectRatio:false,
 
 
 scales:{
@@ -474,6 +476,7 @@ options:{
 
 
 responsive:true,
+maintainAspectRatio:false,
 
 
 plugins:{
