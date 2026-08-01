@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}"/>
+    <title>Tideline | History</title>
+    <style>
+        /* history-page-only additions, kept out of the shared stylesheet */
+        .failed {
+            background: rgba(232,121,97,.28);
+            color: var(--red);
+        }
+        .back-link {
+            color: var(--muted);
+            text-decoration: none;
+            font-size: 14px;
+            display: inline-block;
+            margin-bottom: 20px;
+        }
+        .back-link:hover { color: var(--text); }
+        .tabs {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            margin-bottom: 20px;
+        }
+        .tab-btn {
+            background: var(--panel);
+            border: 1px solid rgba(255,255,255,.08);
+            color: var(--muted);
+            padding: 8px 16px;
+            border-radius: 20px;
+            font-size: 14px;
+            cursor: pointer;
+        }
+        .tab-btn.active {
+            background: rgba(84,210,176,.15);
+            color: var(--green);
+            border-color: transparent;
+        }
+        .pod-detail { display: none; }
+        .pod-detail.active { display: block; }
+        .table-scroll { overflow-x: auto; }
+        td.mono, th.mono { white-space: nowrap; }
+        .loading-row td {
+            color: var(--muted);
+            text-align: center;
+            padding: 30px;
+        }
+    </style>
+    </head>
+ 
+    <body>
+        <div class="container">
+        <header>
+        <div>
+            <div class="logo">
+            🌊 Tideline
+            </div>
+            <div class="subtitle">
+            Matilda Bay Orca Recovery Dashboard
+            </div>
+        </div>
+        <div class="status">
+        ● Recovery Monitoring Active
+        </div>
+        </header>
+ 
+        <a class="back-link" href="{{ url_for('index') }}">&larr; Back to dashboard</a>
+ 
+        <section class="hero">
+        <h1>
+        Recovery history,
+        <br>
+        <span>pod by pod.</span>
+        </h1>
+        <p>
+        Daily supply and consumption records collected from scout drone scans and
+        elder reports across every Orca Pod since the disaster.
+        </p>
+        </section>
+ 
+        <section class="section">
+            <div class="card">
+                <h2>Pod Overview (Latest Report)</h2>
+                <div class="table-scroll">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Pod</th>
+                            <th>Last Report</th>
+                            <th>Population</th>
+                            <th>Distance (km)</th>
+                            <th>Water Runway</th>
+                            <th>Food Runway</th>
+                            <th>Medicine Runway</th>
+                            <th>Status</th>
+                            <th>Requesting Aid</th>
+                        </tr>
+                    </thead>
+                    <tbody id="overviewBody">
+                        <tr class="loading-row"><td colspan="9">Loading pod overview&hellip;</td></tr>
+                    </tbody>
+                </table>
+                </div>
+            </div>
+        </section>
+ 
+        <section class="section">
+            <div class="card">
+                <h2>Daily Timeline</h2>
+ 
+                <div class="tabs" id="podTabs">
+                    <!-- populated by history.js -->
+                </div>
+ 
+                <div id="podDetails">
+                    <p class="small">Loading timeline&hellip;</p>
+                </div>
+            </div>
+        </section>
+ 
+        <footer>
+        Tideline Recovery System |
+        Matilda Bay Zone
+        </footer>
+        </div>
+ 
+        <script src="{{ url_for('static', filename='js/history.js') }}"></script>
+    </body>
+</html>

@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}"/>
+    <title>Tideline | Matilda Bay Recovery</title>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <div>
+                <div class="logo">🌊 Tideline</div>
+                <div class="subtitle">Matilda Bay Orca Recovery Dashboard</div>
+            </div>
+            <div class="status">● Recovery Monitoring Active</div>
+        </header>
+
+        <section class="hero">
+            <h1>The bay has resources.<br>The problem is <span>distribution.</span></h1>
+            <p>
+                Tracking water, food and medicine across Orca Pods after the Giant Peacock disaster.
+                Data is collected from supply reports and council allocation records.
+            </p>
+        </section>
+
+        <section>
+            <div class="grid" id="podCards"><!-- Loaded by Javascript --></div>
+        </section>
+
+        <section class="section">
+            <div class="card">
+                <h2>Transfer Route Status</h2>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Route</th>
+                            <th>Status</th>
+                            <th>Notes</th>
+                        </tr>
+                    </thead>
+                    <tbody id="routeTable"></tbody>
+                </table>
+            </div>
+        </section>
+
+        <footer>Tideline Recovery System | Matilda Bay Zone</footer>
+    </div>
+
+    <script src="{{ url_for('static', filename='js/decoy.js') }}"></script>
+</body>
+</html>
