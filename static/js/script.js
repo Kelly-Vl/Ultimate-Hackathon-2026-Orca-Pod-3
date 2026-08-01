@@ -545,10 +545,24 @@ const CANNED_KEYWORD_RESPONSES = [
     { keywords: ["water"], reply: "Water levels are lowest in Pod 2 right now — it dropped into critical range this week." },
     { keywords: ["food"], reply: "Food stock is tightest in Pod 1. Council allocations have been trailing the requested amount there." },
     { keywords: ["medicine"], reply: "Medicine units are holding steady across most pods, but I'd keep an eye on Pod 4." },
+    { keywords: ["pod 1", "pod1"], reply: "Pod 1 has been cycling between warning and critical on food stock most of the month." },
+    { keywords: ["pod 2", "pod2"], reply: "Pod 2 is the one to watch — water there has been failing and the latest report even came back with missing readings." },
+    { keywords: ["pod 3", "pod3"], reply: "Pod 3 is in the best shape of the four right now, sitting mostly in warning rather than critical or failed." },
     { keywords: ["pod 4", "pod4"], reply: "Pod 4 has been sitting at failed status for a while without a new assistance request — worth checking on them directly." },
+    { keywords: ["status", "overall"], reply: "Overall status ranges from stable to failed depending on the pod — Pod 3 is holding up best, Pod 4 is struggling most." },
+    { keywords: ["critical"], reply: "A handful of pods have dipped into critical status this month, mostly on water and food." },
+    { keywords: ["stable"], reply: "Stable pods still get monitored daily — status can shift quickly after a peacock disruption event." },
+    { keywords: ["council", "allocation", "allocate"], reply: "Council allocations don't always match what's requested — some pods have had requests only partially fulfilled." },
+    { keywords: ["request", "assistance"], reply: "Assistance requests are logged per pod per resource type — I can't pull live numbers yet, but that's tracked in the council data." },
+    { keywords: ["delivery", "deliver"], reply: "Deliveries vary by pod based on distance from the hub and how difficult the route is." },
+    { keywords: ["disruption", "peacock"], reply: "Peacock disruption events (minor, major, none) tend to line up with sharper drops in resource stock." },
+    { keywords: ["population"], reply: "Pod populations range roughly from 55 to 120 orcas depending on the pod." },
+    { keywords: ["distance", "hub"], reply: "Distance from the hub varies quite a bit by pod, which affects delivery difficulty." },
+    { keywords: ["who are you", "what are you"], reply: "I'm Tide — a mock recovery assistant for now, not a real AI model yet." },
     { keywords: ["hello", "hi", "hey"], reply: "Hey there 👋 I'm Tide, the recovery assistant. Ask me about water, food, medicine, or a specific pod." },
     { keywords: ["help"], reply: "I can answer quick questions about pod resource status — try asking about water, food, medicine, or a pod by name." },
-    { keywords: ["thank"], reply: "Happy to help! Let me know if there's anything else you'd like to check." }
+    { keywords: ["thank"], reply: "Happy to help! Let me know if there's anything else you'd like to check." },
+    { keywords: ["bye", "goodbye", "see you"], reply: "Take care! Close the window anytime, I'll be here when you need me." }
 ];
 
 // Fallback replies cycle in order (not randomly) when nothing matches,
