@@ -38,6 +38,21 @@ def get_council_allocations():
         df.to_dict(orient="records")
     )
 
+## API - latest state per pod 
+@app.route("/api/pods/latest")
+def latest_pod_status():
+    df = load_pod_supply_data()
+    df["report_date"] = pd.to_datetime(df["report_date"])
+    
+    latest = (
+        df.sort_values("report_date")
+        .groupby("pod_id")
+        .tail(1)
+    )
+
+    return jsonify(
+        latest.to_dict(orient="records")
+    )
 
 ## run server
 if __name__ == "__main__":
