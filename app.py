@@ -14,6 +14,7 @@ app.secret_key = os.environ.get("TIDELINE_SECRET_KEY", secrets.token_hex(32))
 POD_SUPPLY_CSV = "data/matilda_bay_pod_supply_data.csv"
 COUNCIL_ALLOCATIONS_CSV = "data/matilda_bay_council_meetings_data.csv"
 
+## load csv data (JSON-safe: NaN -> None, for the /api endpoints the frontend fetches)
 # ---------------------------------------------------------------------------
 # PASSPHRASE AUTH
 #
@@ -104,6 +105,16 @@ def load_council_allocations():
     return df.astype(object).where(pd.notnull(df), None)
 
 
+## raw numeric loaders (real NaN, not None) -- used internally by the AI features below,
+## which need working pandas math (.mean(), .dropna(), z-scores). Never returned directly via jsonify.
+def load_pod_supply_data_raw():
+    return pd.read_csv(POD_SUPPLY_CSV)
+
+
+def load_council_allocations_raw():
+    return pd.read_csv(COUNCIL_ALLOCATIONS_CSV)
+
+## API - pod supply data
 @app.route("/api/pod_supply")
 def get_pod_supply():
     if not is_authenticated():
