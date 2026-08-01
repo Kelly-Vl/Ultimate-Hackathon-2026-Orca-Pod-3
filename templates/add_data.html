@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}"/>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/add_data.css') }}"/>
+    <title>Tideline | Add Data</title>
+    </head>
+
+    <body>
+        <div class="container">
+        <header>
+        <div>
+            <div class="logo">🌊 Tideline</div>
+            <div class="subtitle">Matilda Bay Orca Recovery Dashboard</div>
+        </div>
+        <nav class="nav-bar">
+            <a class="nav-link" href="{{ url_for('index') }}">Dashboard</a>
+            <a class="nav-link" href="{{ url_for('history') }}">History</a>
+            <a class="nav-link active" href="{{ url_for('add_data') }}">Add Data</a>
+            <div class="status">● Recovery Monitoring Active</div>
+        </nav>
+        </header>
+
+        <section class="hero">
+            <h1>Report today's numbers,<br><span>see everyone else's.</span></h1>
+            <p>
+                One report per pod, per day. Submitting updates the shared record immediately -
+                every pod sees the same current stock levels below, not just their own.
+            </p>
+        </section>
+
+        {% if message %}
+        <div class="flash flash-success">{{ message }}</div>
+        {% endif %}
+        {% if error %}
+        <div class="flash flash-error">{{ error }}</div>
+        {% endif %}
+
+        <section class="section">
+            <div class="card">
+                <h2>Submit Today's Report</h2>
+                <form method="POST" action="{{ url_for('add_data') }}" class="report-form">
+
+                    <div class="form-row">
+                        <div class="field">
+                            <label for="pod_id">Pod</label>
+                            <select id="pod_id" name="pod_id" required>
+                                <option value="" disabled selected>Select your pod</option>
+                                {% for pod_id, meta in pods.items() %}
+                                <option value="{{ pod_id }}" data-population="{{ meta.population }}">{{ meta.pod_name }}</option>
+                                {% endfor %}
+                            </select>
+                        </div>
+                        <div class="field">
+                            <label for="population">Current population</label>
+                            <input type="number" id="population" name="population" min="0" step="1" required>
+                        </div>
+                    </div>
+
+                    <p class="small report-date-note">
+                        Reporting for <strong>today, {{ today }}</strong> - past dates can't be selected or edited.
+                    </p>
+
+                    <h3 class="form-subhead">Current stock</h3>
+                    <div class="form-row">
+                        <div class="field">
+                            <label for="water_stock_l">Water (L)</label>
+                            <input type="number" id="water_stock_l" name="water_stock_l" min="0" step="0.1" required>
+                        </div>
+                        <div class="field">
+                            <label for="food_stock_kg">Food (kg)</label>
+                            <input type="number" id="food_stock_kg" name="food_stock_kg" min="0" step="0.1" required>
+                        </div>
+                        <div class="field">
+                            <label for="medicine_stock_units">Medicine (units)</label>
+                            <input type="number" id="medicine_stock_units" name="medicine_stock_units" min="0" step="0.1" required>
+                        </div>
+                    </div>
+
+                    <h3 class="form-subhead">Today's consumption</h3>
+                    <div class="form-row">
+                        <div class="field">
+                            <label for="water_consumption_lpd">Water used (L/day)</label>
+                            <input type="number" id="water_consumption_lpd" name="water_consumption_lpd" min="0" step="0.1" required>
+                        </div>
+                        <div class="field">
+                            <label for="food_consumption_kgpd">Food used (kg/day)</label>
+                            <input type="number" id="food_consumption_kgpd" name="food_consumption_kgpd" min="0" step="0.1" required>
+                        </div>
+                        <div class="field">
+                            <label for="medicine_consumption_upd">Medicine used (units/day)</label>
+                            <input type="number" id="medicine_consumption_upd" name="medicine_consumption_upd" min="0" step="0.1" required>
+                        </div>
+                    </div>
+
+                    <h3 class="form-subhead">Today's events</h3>
+                    <div class="form-row">
+                        <div class="field">
+                            <label for="peacock_disruption">Peacock disruption</label>
+                            <select id="peacock_disruption" name="peacock_disruption">
+                                <option value="none" selected>None</option>
+                                <option value="minor">Minor</option>
+                                <option value="major">Major</option>
+                            </select>
+                        </div>
+                        <div class="field">
+                            <label for="delivery_resource">Delivery received</label>
+                            <select id="delivery_resource" name="delivery_resource">
+                                <option value="none" selected>None</option>
+                                <option value="water">Water</option>
+                                <option value="food">Food</option>
+                                <option value="medicine">Medicine</option>
+                            </select>
+                        </div>
+                        <div class="field">
+                            <label for="delivery_amount">Delivery amount</label>
+                            <input type="number" id="delivery_amount" name="delivery_amount" min="0" step="0.1" value="0">
+                        </div>
+                    </div>
+
+                    <div class="form-row checkbox-row">
+                        <label class="checkbox-label">
+                            <input type="checkbox" id="requested_assistance" name="requested_assistance">
+                            This pod is requesting assistance
+                        </label>
+                    </div>
+
+                    <button type="submit" class="submit-btn">Submit Report</button>
+                    <p class="small form-note">
+                        Resubmitting for a pod you've already reported today replaces today's report -
+                        it won't create a duplicate.
+                    </p>
+                </form>
+            </div>
+        </section>
+
+        <section class="section">
+            <div class="card">
+                <h2>Everyone's Latest Report</h2>
+                <p class="small" style="margin-bottom:15px;">
+                    Pulled live from every pod's most recent submission.
+                </p>
+                <div class="table-scroll">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Pod</th>
+                            <th>Last Report</th>
+                            <th>Water</th>
+                            <th>Food</th>
+                            <th>Medicine</th>
+                            <th>Status</th>
+                            <th>Requesting Aid</th>
+                        </tr>
+                    </thead>
+                    <tbody id="latestBody">
+                        <tr class="loading-row"><td colspan="7">Loading latest reports&hellip;</td></tr>
+                    </tbody>
+                </table>
+                </div>
+            </div>
+        </section>
+
+        <footer>Tideline Recovery System | Matilda Bay Zone</footer>
+        </div>
+
+        <script src="{{ url_for('static', filename='js/add_data.js') }}"></script>
+    </body>
+</html>
