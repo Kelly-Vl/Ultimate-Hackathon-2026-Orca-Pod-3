@@ -70,6 +70,29 @@ header {
 }
 
 
+/* NAV */
+
+.nav-bar {
+    display:flex;
+    align-items:center;
+    gap:20px;
+}
+
+.nav-link {
+    color:var(--muted);
+    text-decoration:none;
+    font-size:14px;
+}
+
+.nav-link:hover {
+    color:var(--text);
+}
+
+.nav-link.active {
+    color:var(--text);
+}
+
+
 /* HERO */
 
 .hero {

@@ -18,9 +18,14 @@
             Matilda Bay Orca Recovery Dashboard
             </div>
         </div>
-        <div class="status">
-        ● Recovery Monitoring Active
-        </div>
+        <nav class="nav-bar">
+            <a class="nav-link active" href="{{ url_for('index') }}">Dashboard</a>
+            <a class="nav-link" href="{{ url_for('history') }}">History</a>
+            <a class="nav-link" href="/add-data">Add Data</a>
+            <div class="status">
+            ● Recovery Monitoring Active
+            </div>
+        </nav>
         </header>
         <section class="hero">
         <h1>

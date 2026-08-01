@@ -170,6 +170,11 @@ def decoy_routes():
     return jsonify(fake_routes)
 
 
+## history
+@app.route("/api/pods/history")
+def history():
+    return render_template("history.html")
+
 ## run server
 if __name__ == "__main__":
     app.run(debug=True, host="0.0.0.0", port=5000)
