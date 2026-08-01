@@ -114,12 +114,6 @@ def load_pod_supply_data_raw():
 def load_council_allocations_raw():
     return pd.read_csv(COUNCIL_ALLOCATIONS_CSV)
 
-
-## main page
-@app.route("/")
-def index():
-    return render_template("index.html")
-
 ## API - pod supply data
 @app.route("/api/pod_supply")
 def get_pod_supply():
