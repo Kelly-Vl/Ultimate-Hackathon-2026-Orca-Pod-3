@@ -60,6 +60,34 @@
             </table>
             </div>
         </section>
+
+        <section class="section">
+            <div class="grid">
+                <div class="card chart-card">
+                    <h2>
+                        Pod Resource Inventory
+                    </h2>
+
+                    <canvas id="resourceChart"></canvas>
+                </div>
+
+                <div class="card chart-card">
+                    <h2>
+                        Bay Resource Distribution
+                    </h2>
+                    <canvas id="distributionChart"></canvas>
+                </div>
+            </div>
+        </section>
+
+        <section class="section">
+            <div class="card chart-card">
+                <h2>
+                Pod Resource Health Profile
+                </h2>
+                <canvas id="healthChart"></canvas>
+            </div>
+        </section>
         
         <footer>
         Tideline Recovery System |
@@ -67,6 +95,7 @@
         </footer>
         </div>
 
+        <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
         <script src="{{ url_for('static', filename='js/script.js') }}"></script>
 
     </body>
